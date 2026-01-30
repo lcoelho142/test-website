@@ -1,0 +1,33 @@
+body {
+    margin: 0px;
+    background-color: black;
+}
+
+img {
+    width: 100%;
+}
+
+header {
+    padding: 0.6 em;
+    padding-bottom: 1em;
+}
+
+header > button {
+    padding: 0.5em 1em;
+    background-color: #333;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 0.4em;
+}
+
+header > button:hover {
+    background-color: #555;
+}
+
+header > button.active {
+    background-color: white;
+    color: #000;
+    border-color: white;
+}
+
