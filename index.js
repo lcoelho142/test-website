@@ -31,13 +31,16 @@ document.addEventListener("click", (e) => {
     const targetId = e.target.getAttribute("data-target");
     const targetContainer = document.getElementById(targetId);
 
+    const isAlreadyActive = e.target.classList.contains("active");
+
     document.querySelectorAll(".child-buttons").forEach(el => el.classList.add("hidden"));
     document.querySelectorAll(".parent-btn").forEach(btn => btn.classList.remove("active"));
 
-    if (targetContainer) {
+    if (!isAlreadyActive && targetContainer) {
       targetContainer.classList.remove("hidden");
       e.target.classList.add("active");
     }
+
     return;
   }
 
