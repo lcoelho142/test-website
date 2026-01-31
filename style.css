@@ -12,22 +12,81 @@ header {
     padding-bottom: 1em;
 }
 
-header > button {
+.child-buttons button {
     padding: 0.5em 1em;
     background-color: #333;
     color: white;
     border: 1px solid white;
     border-radius: 5px;
     margin: 0.4em;
+    cursor: pointer;
 }
 
-header > button:hover {
+.child-buttons button:hover {
     background-color: #555;
 }
 
-header > button.active {
+.child-buttons button.active {
     background-color: white;
     color: #000;
     border-color: white;
+}
+
+.nav-group {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.parent-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.parent-btn {
+    flex: 1;
+    margin: 0; 
+    box-sizing: border-box;  
+    padding: 10px;   
+    background-color: #333;  
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.parent-btn:hover {
+    background-color: #555;
+}
+
+.parent-btn.active {
+    background-color: white;
+    color: #000;
+    border-color: white;
+}
+
+.child-buttons {
+    padding-left: 20px; 
+    margin-top: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+picture {
+    display: block;
+    width: 100%;
+}
+
+.error-banner {
+    background-color: #ffeb3b; /* Yellow warning color */
+    color: #000;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 

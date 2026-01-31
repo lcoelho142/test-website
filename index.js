@@ -1,39 +1,79 @@
-// const buttons = document.querySelectorAll("header > button");
-// const validIDs = ["home-01","home-02","home-03","about-01","about-02","about-03",
-//   "contact-01","contact-02","blog-01","blog-02","delete-data-01","delete-data-02",
-//   "privacy-01","privacy-02","terms-01","terms-02"];
-
-// const imgEl = document.getElementById("website-img");
-
-// document.addEventListener("click", (e) => {
-//   if (!validIDs.includes(e.target.id)) return;
-
-//   // Update image
-//   imgEl.src = `./images/${e.target.id}.png`;
-
-//   // Clear previous active
-//   buttons.forEach(btn => btn.classList.remove("active"));
-
-//   // Set new active
-//   e.target.classList.add("active");
-// });
-
-const buttons = document.querySelectorAll("header > button");
-const validIDs = ["home-01","home-02","home-03","about-01","about-02","about-03",
-  "contact-01","contact-02","blog-01","blog-02","delete-data-01","delete-data-02",
-  "privacy-01","privacy-02","terms-01","terms-02"];
-
+const desktopSource = document.getElementById("desktop-source");
 const imgEl = document.getElementById("website-img");
+const errorMsg = document.getElementById("desktop-error-msg"); // Move this to the top
 
-// Default on refresh
-const defaultBtn = document.getElementById("home-01");
-defaultBtn.classList.add("active");
-imgEl.src = "./images/home-01.png";
+const validIDs = [
+  "home-revised-01", "about-revised-01", "v1-home-01", "v1-home-02", "v1-home-03",
+  "v1-about-01", "v1-about-02", "v1-about-03", "v1-contact-01", "v1-contact-02",
+  "v1-blog-01", "v1-blog-02", "v1-delete-data-01", "v1-delete-data-02",
+  "v1-privacy-01", "v1-privacy-02", "v1-terms-01", "v1-terms-02"
+];
 
+// --- Default on refresh ---
+const defaultBtn = document.getElementById("home-revised-01");
+const defaultParent = document.querySelector('.parent-btn[data-target="draft-2"]');
+const defaultContainer = document.getElementById("draft-2");
+
+if (defaultBtn) defaultBtn.classList.add("active");
+if (defaultParent) defaultParent.classList.add("active");
+if (defaultContainer) defaultContainer.classList.remove("hidden");
+
+// Initial Image Setup
+imgEl.src = "./images/home-revised-01.png";
+if (desktopSource) {
+  desktopSource.srcset = "./images/home-revised-01-desktop.png";
+}
+
+// Event Listener
 document.addEventListener("click", (e) => {
-  if (!validIDs.includes(e.target.id)) return;
+  // 1. Parent Button Logic
+  if (e.target.classList.contains("parent-btn")) {
+    const targetId = e.target.getAttribute("data-target");
+    const targetContainer = document.getElementById(targetId);
 
-  imgEl.src = `./images/${e.target.id}.png`;
-  buttons.forEach(b => b.classList.remove("active"));
-  e.target.classList.add("active");
+    document.querySelectorAll(".child-buttons").forEach(el => el.classList.add("hidden"));
+    document.querySelectorAll(".parent-btn").forEach(btn => btn.classList.remove("active"));
+
+    if (targetContainer) {
+      targetContainer.classList.remove("hidden");
+      e.target.classList.add("active");
+    }
+    return;
+  }
+
+  // 2. Child Button Logic
+  if (validIDs.includes(e.target.id)) {
+    const id = e.target.id;
+
+    // Reset error message on every new click
+    if (errorMsg) errorMsg.classList.add("hidden");
+
+    // Update Mobile Image
+    imgEl.src = `./images/${id}.png`;
+
+    // Update Desktop Image with Error Handling
+    if (desktopSource) {
+      const desktopUrl = `./images/${id}-desktop.png`;
+      const tempImg = new Image();
+      
+      tempImg.onload = () => {
+        desktopSource.srcset = desktopUrl;
+        if (errorMsg) errorMsg.classList.add("hidden");
+      };
+
+      tempImg.onerror = () => {
+        desktopSource.srcset = ""; // Clears desktop so it falls back to mobile img
+        // Only show error if the user is actually on a desktop-sized screen
+        if (window.innerWidth >= 768 && errorMsg) {
+          errorMsg.classList.remove("hidden");
+        }
+      };
+
+      tempImg.src = desktopUrl; // Trigger the load
+    }
+
+    // Active State for Child Buttons
+    document.querySelectorAll(".child-buttons button").forEach(b => b.classList.remove("active"));
+    e.target.classList.add("active");
+  }
 });
