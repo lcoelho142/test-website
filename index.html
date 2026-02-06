@@ -10,22 +10,27 @@
     <body>
         <header>
             <div class="parent-controls">
+                <button class="parent-btn" data-target="draft-3">Figma 1st Draft +</button>
                 <button class="parent-btn" data-target="draft-2">2nd Draft FigJam Options +</button>
                 <button class="parent-btn" data-target="draft-1">1st Draft FigJam Options +</button>
             </div>
 
             <div class="nav-group"> 
+                
+                <div id="draft-3" class="child-buttons hidden">
+                    <button id="home-figma">Home</button>
+                    <button id="about-figma">About</button>
+                    <button id="contact-figma">Contact</button>
+                    <button id="blog-figma">Blog</button>
+                    <button id="delete-data-figma">Delete Data</button>
+                    <button id="privacy-figma">Privacy Policy</button>
+                    <button id="terms-figma">Terms & Conditions</button>
+                </div>
 
                 
                 <div id="draft-2" class="child-buttons hidden">
                     <button id="home-revised-01">Home Revised 01</button>
                     <button id="about-revised-01">About Revised 01</button>
-
-                    <!-- <button id="contact-01">Contact 01</button>
-                    <button id="blog-01">Blog 01</button>
-                    <button id="delete-data-01">Delete Data 01</button>
-                    <button id="privacy-01">Privacy 01</button>
-                    <button id="terms-01">Terms 01</button> -->
                 </div>
 
                 
@@ -61,8 +66,8 @@
             </div>
 
             <picture id="image-container">
-                <source media="(min-width: 768px)" id="desktop-source" srcset="./images/home-revised-01-desktop.png">
-                <img id="website-img" src="./images/home-revised-01.png" draggable="false" />
+                <source media="(min-width: 768px)" id="desktop-source" srcset="./images/home-figma-desktop.png">
+                <img id="website-img" src="./images/home-figma.png" draggable="false" />
             </picture>
         </main>
     </body>

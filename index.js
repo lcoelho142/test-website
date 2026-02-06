@@ -3,25 +3,24 @@ const imgEl = document.getElementById("website-img");
 const errorMsg = document.getElementById("desktop-error-msg"); // Move this to the top
 
 const validIDs = [
-  "home-revised-01", "about-revised-01", "v1-home-01", "v1-home-02", "v1-home-03",
-  "v1-about-01", "v1-about-02", "v1-about-03", "v1-contact-01", "v1-contact-02",
+  "home-figma", "about-figma", "contact-figma", "blog-figma", "delete-data-figma", "privacy-figma", "terms-figma", "home-revised-01", "about-revised-01", "v1-home-01", "v1-home-02", "v1-home-03", "v1-about-01", "v1-about-02", "v1-about-03", "v1-contact-01", "v1-contact-02",
   "v1-blog-01", "v1-blog-02", "v1-delete-data-01", "v1-delete-data-02",
   "v1-privacy-01", "v1-privacy-02", "v1-terms-01", "v1-terms-02"
 ];
 
 // --- Default on refresh ---
-const defaultBtn = document.getElementById("home-revised-01");
-const defaultParent = document.querySelector('.parent-btn[data-target="draft-2"]');
-const defaultContainer = document.getElementById("draft-2");
+const defaultBtn = document.getElementById("home-figma");
+const defaultParent = document.querySelector('.parent-btn[data-target="draft-3"]');
+const defaultContainer = document.getElementById("draft-3");
 
 if (defaultBtn) defaultBtn.classList.add("active");
 if (defaultParent) defaultParent.classList.add("active");
 if (defaultContainer) defaultContainer.classList.remove("hidden");
 
 // Initial Image Setup
-imgEl.src = "./images/home-revised-01.png";
+imgEl.src = "./images/home-figma.png";
 if (desktopSource) {
-  desktopSource.srcset = "./images/home-revised-01-desktop.png";
+  desktopSource.srcset = "./images/home-figma-desktop.png";
 }
 
 // Event Listener
